@@ -12,3 +12,7 @@ app.get("/", function (req, res) {
 app.get("/write", function (req, res) {
   res.sendFile(__dirname + "/write.html");
 });
+
+app.post("/add", function (req, res) {
+  res.send("completed");
+});
