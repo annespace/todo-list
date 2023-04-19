@@ -8,3 +8,7 @@ app.listen(8080, function () {
 app.get("/", function (req, res) {
   res.sendFile(__dirname + "/index.html");
 });
+
+app.get("/add", function (req, res) {
+  res.sendFile(__dirname + "/add.html");
+});
