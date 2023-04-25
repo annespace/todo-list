@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
-
 const MongoClient = require("mongodb").MongoClient;
+app.set("view engine", "ejs");
 
 var db;
 
@@ -41,4 +41,8 @@ app.post("/add", function (req, res) {
       console.log("Saved");
     }
   );
+});
+
+app.get("/list", function (req, res) {
+  res.render("list.ejs");
 });
