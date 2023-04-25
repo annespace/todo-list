@@ -36,7 +36,7 @@ app.post("/add", function (req, res) {
   console.log(req.body.title);
   console.log(req.body.date);
   db.collection("post").insertOne(
-    { Title: req.body.title, Date: req.body.date, _id: 1 },
+    { Title: req.body.title, Date: req.body.date },
     function (err, result) {
       console.log("Saved");
     }
@@ -44,5 +44,10 @@ app.post("/add", function (req, res) {
 });
 
 app.get("/list", function (req, res) {
-  res.render("list.ejs");
+  db.collection("post")
+    .find()
+    .toArray(function (err, result) {
+      console.log(result);
+      res.render("list.ejs", { posts: result });
+    });
 });
