@@ -33,12 +33,20 @@ app.get("/write", function (req, res) {
 app.post("/add", function (req, res) {
   res.send("completed");
   //console.log(req.body);
-  console.log(req.body.title);
-  console.log(req.body.date);
-  db.collection("post").insertOne(
-    { Title: req.body.title, Date: req.body.date },
+  // console.log(req.body.title);
+  // console.log(req.body.date);
+  db.collection("counter").findOne(
+    { name: "numOfPost" },
     function (err, result) {
-      console.log("Saved");
+      //console.log(result.totalPost);
+      var numOfPost = result.totalPost;
+
+      db.collection("post").insertOne(
+        { _id: numOfPost + 1, Title: req.body.title, Date: req.body.date },
+        function (err, result) {
+          console.log("Saved");
+        }
+      );
     }
   );
 });
