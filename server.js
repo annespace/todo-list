@@ -45,6 +45,15 @@ app.post("/add", function (req, res) {
         { _id: numOfPost + 1, Title: req.body.title, Date: req.body.date },
         function (err, result) {
           console.log("Saved");
+          db.collection("counter").updateOne(
+            { name: "numOfPost" },
+            { $inc: { totalPost: 1 } },
+            function (err, result) {
+              if (err) {
+                return console.log(err);
+              }
+            }
+          );
         }
       );
     }
