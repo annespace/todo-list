@@ -74,5 +74,6 @@ app.delete("/delete", function (req, res) {
   req.body._id = parseInt(req.body._id);
   db.collection("post").deleteOne(req.body, function (err, result) {
     console.log("Delete Completed");
+    res.status(200).send({ message: "completed " });
   });
 });
