@@ -66,11 +66,21 @@
     <script>
       $(".delete").click(function (e) {
         var number = e.target.dataset.id;
+        var now = $(this);
         $.ajax({
           method: "DELETE",
           url: "/delete",
           data: { _id: number },
-        }).done(function (result) {});
+        })
+          .done(function (result) {
+            // 페이지를 강제로 새로고침
+            // 삭제버튼을 누른 li요소를 제거 - 안보이게
+            console.log("succeeded!");
+            now.parent("li").fadeOut();
+          })
+          .fail(function (xhr, textStatus, errorThrown) {
+            console.log(xhr, textStatus, errorThrown);
+          });
       });
 
       // $.ajax({
