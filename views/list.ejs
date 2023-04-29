@@ -53,9 +53,10 @@
     <ul class="list-group">
       <% for (var i = 0; i < posts.length; i++ ){ %>
       <li class="list-group-item">
+        <p>Number : <%= posts[i]._id %></p>
         <h4>Title : <%= posts[i].Title %></h4>
         <p>Due Date : <%= posts[i].Date %></p>
-        <button>DELETE</button>
+        <button class="delete" data-id="<%= posts[i]._id %>">DELETE</button>
       </li>
       <%}%>
     </ul>
@@ -63,11 +64,20 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
-      $.ajax({
-        method: "DELETE",
-        url: "/delete",
-        data: "number",
-      }).done(function (result) {});
+      $(".delete").click(function (e) {
+        var number = e.target.dataset.id;
+        $.ajax({
+          method: "DELETE",
+          url: "/delete",
+          data: { _id: number },
+        }).done(function (result) {});
+      });
+
+      // $.ajax({
+      //   method: "DELETE",
+      //   url: "/delete",
+      //   data: { _id: 1 },
+      // }).done(function (result) {});
     </script>
   </body>
 </html>
