@@ -31,7 +31,7 @@ app.get("/write", function (req, res) {
 });
 
 app.post("/add", function (req, res) {
-  res.send("completed");
+  res.send("Completed");
   //console.log(req.body);
   // console.log(req.body.title);
   // console.log(req.body.date);
@@ -71,4 +71,8 @@ app.get("/list", function (req, res) {
 
 app.delete("/delete", function (req, res) {
   console.log(req.body);
+  req.body._id = parseInt(req.body._id);
+  db.collection("post").deleteOne(req.body, function (err, result) {
+    console.log("Delete Completed");
+  });
 });
