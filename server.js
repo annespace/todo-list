@@ -77,3 +77,10 @@ app.delete("/delete", function (req, res) {
     res.status(200).send({ message: "completed " });
   });
 });
+
+app.get("/detail/:id", function (req, res) {
+  db.collection("post").findOne({ _id: req.params.id }, function (err, result) {
+    console.log(result);
+    res.render("detail.ejs", { data: result });
+  });
+});
