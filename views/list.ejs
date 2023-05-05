@@ -27,7 +27,7 @@
       <ul class="list-group">
         <% for (var i = 0; i < posts.length; i++ ){ %>
         <li class="list-group-item">
-          <p>Number : <%= posts[i]._id %></p>
+          <p>Post : <%= posts[i]._id %></p>
           <h4>Title : <%= posts[i].Title %></h4>
           <h6>Due Date : <%= posts[i].Date %></h6>
           <button class="btn btn-danger delete" data-id="<%= posts[i]._id %>">
