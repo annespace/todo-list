@@ -43,7 +43,7 @@
     <script>
       $(".delete").click(function (e) {
         var number = e.target.dataset.id;
-        var now = $(this);
+        var now = $(this);  
         $.ajax({
           method: "DELETE",
           url: "/delete",
