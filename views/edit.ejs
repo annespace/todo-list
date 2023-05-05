@@ -15,9 +15,15 @@
   <body>
     <%- include('nav.html')%>
     <div class="container mt-4">
-      <form action="/add" method="POST">
+      <form action="/edit?_method=PUT" method="POST">
         <div class="form-group">
           <label>Title</label>
+          <input
+            type="text"
+            value="<%= data._id %>"
+            name="id"
+            style="display: none"
+          />
           <input
             value="<%= data.Title %>"
             type="text"
