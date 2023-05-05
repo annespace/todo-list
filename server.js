@@ -101,3 +101,14 @@ app.get("/edit/:id", function (req, res) {
     }
   );
 });
+
+app.put("/edit", function (req, res) {
+  db.collection("post").updateOne(
+    { _id: parseInt(req.body.id) },
+    { $set: { Title: req.body.title, Date: req.body.date } },
+    function (err, result) {
+      console.log("Saved");
+      res.redirect("/list");
+    }
+  );
+});
