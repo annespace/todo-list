@@ -88,3 +88,13 @@ app.get("/detail/:id", function (req, res) {
     }
   );
 });
+
+app.get("/edit/:id", function (req, res) {
+  db.collection("post").findOne(
+    { _id: parseInt(req.params.id) },
+    function (err, result) {
+      console.log(result);
+      res.render("edit.ejs", { data: result });
+    }
+  );
+});
