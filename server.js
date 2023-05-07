@@ -35,7 +35,7 @@ app.get("/write", function (req, res) {
 });
 
 app.post("/add", function (req, res) {
-  res.send("Completed");
+  res.redirect("/list");
   //console.log(req.body);
   // console.log(req.body.title);
   // console.log(req.body.date);
