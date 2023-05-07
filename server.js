@@ -35,7 +35,6 @@ app.get("/write", function (req, res) {
 });
 
 app.post("/add", function (req, res) {
-  res.redirect("/list");
   //console.log(req.body);
   // console.log(req.body.title);
   // console.log(req.body.date);
@@ -56,6 +55,7 @@ app.post("/add", function (req, res) {
               if (err) {
                 return console.log(err);
               }
+              res.redirect("/list");
             }
           );
         }
