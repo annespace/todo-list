@@ -123,3 +123,40 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.get("/login", function (req, res) {
+  res.render("login.ejs");
+});
+
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/fail",
+  }),
+  function (req, res) {
+    res.redirect("/");
+  }
+);
+
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: "id",
+      passwordField: "pw",
+      session: true,
+      passReqToCallback: false,
+    },
+    function (idinput, pwinput, done) {
+      db.collection("login").findOne({ id: idinput }, function (err, result) {
+        if (err) return done(err);
+
+        if (!result) return done(null, false, { message: "id does not exist" });
+        if (pwinput == result.pw) {
+          return done(null, 결과);
+        } else {
+          return done(null, false, { message: "wrong password" });
+        }
+      });
+    }
+  )
+);
