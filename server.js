@@ -160,3 +160,11 @@ passport.use(
     }
   )
 );
+
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function (아이디, done) {
+  done(null, {});
+});
