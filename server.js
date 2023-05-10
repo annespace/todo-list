@@ -142,6 +142,18 @@ app.get("/fail", function (req, res) {
   res.render("fail.ejs");
 });
 
+app.get("/mypage", isLogin, function (req, res) {
+  res.render("mypage.ejs");
+});
+
+function isLogin(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    res.send("please log-in");
+  }
+}
+
 passport.use(
   new LocalStrategy(
     {
