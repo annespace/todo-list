@@ -138,6 +138,10 @@ app.post(
   }
 );
 
+app.get("/fail", function (req, res) {
+  res.render("fail.ejs");
+});
+
 passport.use(
   new LocalStrategy(
     {
@@ -152,7 +156,7 @@ passport.use(
 
         if (!result) return done(null, false, { message: "id does not exist" });
         if (pwinput == result.pw) {
-          return done(null, 결과);
+          return done(null, result);
         } else {
           return done(null, false, { message: "wrong password" });
         }
