@@ -144,7 +144,7 @@ app.get("/fail", function (req, res) {
 
 app.get("/mypage", isLogin, function (req, res) {
   console.log(req.user);
-  res.render("mypage.ejs");
+  res.render("mypage.ejs", { users: req.user });
 });
 
 //middleware - mypage 접속 전 실행할
