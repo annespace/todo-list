@@ -146,6 +146,7 @@ app.get("/mypage", isLogin, function (req, res) {
   res.render("mypage.ejs");
 });
 
+//middleware - mypage 접속 전 실행할
 function isLogin(req, res, next) {
   if (req.user) {
     next();
