@@ -143,6 +143,7 @@ app.get("/fail", function (req, res) {
 });
 
 app.get("/mypage", isLogin, function (req, res) {
+  console.log(req.user);
   res.render("mypage.ejs");
 });
 
@@ -182,6 +183,8 @@ passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser(function (아이디, done) {
-  done(null, {});
+passport.deserializeUser(function (id, done) {
+  db.collection("login").findOne({ id: id }, function (err, result) {
+    done(null, result);
+  });
 });
